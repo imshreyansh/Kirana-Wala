@@ -1,0 +1,66 @@
+.AuthMain{
+    width:100%;
+    background-size: 100% 100%;
+    background-color: #b3e5fc;
+    height:100vh;
+}
+
+.AuthDistribution{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+}
+
+.AuthTwoImage{
+    width:60%;  
+}
+
+.AuthTwoImageTag{
+    height:70vh;
+    bottom:0;
+    position:absolute;
+    margin-left: 5%;
+}
+
+.AuthContainer{
+    width:40%;
+}
+
+.AuthLogoMain{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    flex-direction: row;
+}
+
+.AuthLogo{
+    width:20%;
+    margin-top:2%;
+    margin-right: 5%;
+}
+
+.AuthLoginContainer{
+    width:60%;
+    background-color:#fff;
+    padding:5%;
+    margin-top:30%;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.AuthPhoneInput{
+    outline:none;
+    text-decoration: none;
+    width:90%;
+    border-width: 0 0 2px;
+    padding:2%;
+    font-size: 15px;
+}
+
+.AuthLoginMobileIcon{
+    color:#b3e5fc;
+}
