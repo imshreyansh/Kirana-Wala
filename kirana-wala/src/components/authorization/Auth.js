@@ -3,7 +3,7 @@ import './Auth.css'
 import imageGirl from '../../assets/images/imageGirl.png'
 import logo from '../../assets/images/logo.png'
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
-
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 class Auth extends Component{
     constructor(props){
         super(props)
@@ -27,6 +27,9 @@ class Auth extends Component{
                     <div className="AuthLoginContainer">
                         <PhoneAndroidIcon className="AuthLoginMobileIcon"/>
                     <input className="AuthPhoneInput" style={{borderBottomColor:'#b3e5fc'}}  value={this.state.phone} onChange={(e)=>this.setState({phone:e.target.value})} placeholder="Enter 10 digit mobile number"/>
+                    <div className="AuthGoButtonDiv">
+                        <ArrowForwardIcon style={{color:'#fff',cursor:'pointer'}}/>
+                    </div>
                     </div>
                 </div>
                 </div>

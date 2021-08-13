@@ -37,4 +37,4 @@ const port = process.env.PORT || 3000
 
 let httpServer;
 httpServer = http.createServer(app);
-  httpServer.listen(port, () => console.info(`welcome to elegante :)  visit http://localhost:${port}`))
+  httpServer.listen(port, () => console.info(`welcome to Kirana Wala :)  visit http://localhost:${port}`))
