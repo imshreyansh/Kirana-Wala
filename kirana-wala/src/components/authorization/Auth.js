@@ -8,9 +8,16 @@ class Auth extends Component{
     constructor(props){
         super(props)
         this.default={
-            phone:''
+            phone:'',
+            user:true
         }
         this.state=this.default
+    }
+
+    onSelectDesignation = () =>{
+        this.setState({
+            user:!this.state.user
+        })
     }
 
     render(){
@@ -25,11 +32,15 @@ class Auth extends Component{
                         <img src={logo} className="AuthLogo"/>
                     </div>
                     <div className="AuthLoginContainer">
+                        <div className="AuthLoginContainerTwo">
                         <PhoneAndroidIcon className="AuthLoginMobileIcon"/>
                     <input className="AuthPhoneInput" style={{borderBottomColor:'#b3e5fc'}}  value={this.state.phone} onChange={(e)=>this.setState({phone:e.target.value})} placeholder="Enter 10 digit mobile number"/>
                     <div className="AuthGoButtonDiv">
                         <ArrowForwardIcon style={{color:'#fff',cursor:'pointer'}}/>
                     </div>
+                        </div>
+                       <span className="AuthSelectionOr">OR</span>
+                    <span onClick={()=>this.onSelectDesignation()} className="AuthSelectionRegister">{this.state.user ? 'Login as Super Market' : 'Login as Customer'}</span>
                     </div>
                 </div>
                 </div>

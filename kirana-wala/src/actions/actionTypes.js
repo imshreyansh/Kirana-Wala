@@ -1,1 +1,2 @@
 export const ERROR='ERROR'
+export const AUTHENTICATION='AUTHENTICATION'
