@@ -28,7 +28,7 @@ state={
 
     render(){
         return(
-            this.props.errorText==='' ? null:
+            this.props.errorText===''? null:
             <Snackbar open={this.state.setOpen} autoHideDuration={this.props.errorType==='success' ? 5000  :2000} onClose={()=>this.handleClose()}>
             <MuiAlert elevation={6} variant="filled" onClose={()=>this.handleClose()} severity={this.props.errorType}>
                 {this.props.errorText}

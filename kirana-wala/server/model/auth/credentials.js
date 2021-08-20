@@ -12,8 +12,13 @@ const credential = new Schema({
     },
     avatar:Object,
     designation:{
-        type:Schema.Types.ObjectId,
-        ref:"Designation"
+        id:{
+            type:Schema.Types.ObjectId,
+            ref:"Designation"
+        },
+        name:{
+            type:String
+        }
     },
     created_at: {
         type: Date,

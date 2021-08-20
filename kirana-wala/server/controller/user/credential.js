@@ -1,4 +1,5 @@
 const {Credential} = require('../../model/auth/credentials')
+const {Designation} = require('../../model/master/designation')
 const { handler: { errorResponseHandler, successResponseHandler }, upload: { uploadAvatar }} = require('../../config')
 
 
@@ -11,10 +12,15 @@ exports.createAndLoginUser = (req,res)=>{
             if(check){
                 successResponseHandler(res,check.generateToken(),'Got Token Succesfully')
             }else{
-                const addUser = new Credential({mobile,name,designation})
+                const getDesignationById = await Designation.findOne({_id:designation.id})
+                const objDesignation = {
+                    id:designation.id,
+                    name:getDesignationById.name
+                }
+                const addUser = new Credential({mobile,name,designation:objDesignation})
                 addUser['avatar']=req.files[0]
                 await addUser.save()
-                successResponseHandler(res,addUser,'Added User Successfully')
+                successResponseHandler(res,addUser.generateToken(),'Added User Successfully')
             }
         }
         catch(error){
