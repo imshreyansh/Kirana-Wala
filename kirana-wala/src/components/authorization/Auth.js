@@ -7,12 +7,16 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import {authenticateUser} from '../../actions/auth'
 import {connect} from 'react-redux'
 import user from '../../assets/images/user.png'
+import {validation} from '../utils/validation'
+import {handleError} from '../../actions/handleError'
+
 class Auth extends Component{
     constructor(props){
         super(props)
         this.default={
             phone:'',
             user:true,
+            phoneE:'',
             userImage:this.dataURLtoFile(user,'avatar')
         }
         this.state=this.default
@@ -38,18 +42,22 @@ class Auth extends Component{
     
 
     onSubmit = () =>{
-        const obj = { 
-            name:'',
-            mobile:this.state.phone,
-            designation:{
-                id:this.state.user ?'611e3a91d51a3b8689f40296' :'61162e5e361bb3146bf49d2d'
+        if(this.state.phone !=='' && this.state.phoneE===''){
+            const obj = { 
+                name:'',
+                mobile:this.state.phone,
+                designation:{
+                    id:this.state.user ?'611e3a91d51a3b8689f40296' :'61162e5e361bb3146bf49d2d'
+                }
             }
+            const formData = new FormData()
+            formData.append('avatar',user)
+            formData.append('data',JSON.stringify(obj))
+            
+            this.props.dispatch(authenticateUser(formData))
+        }else{
+            this.props.dispatch(handleError({type:'error',error:this.state.phoneE === '' ? 'Empty Fields' : this.state.phoneE}))
         }
-        const formData = new FormData()
-        formData.append('avatar',user)
-        formData.append('data',JSON.stringify(obj))
-        
-        this.props.dispatch(authenticateUser(formData))
     }
 
     render(){
@@ -66,7 +74,7 @@ class Auth extends Component{
                     <div className="AuthLoginContainer">
                         <div className="AuthLoginContainerTwo">
                         <PhoneAndroidIcon className="AuthLoginMobileIcon"/>
-                    <input className="AuthPhoneInput" style={{borderBottomColor:'#b3e5fc'}}  value={this.state.phone} onChange={(e)=>this.setState({phone:e.target.value})} placeholder="Enter 10 digit mobile number"/>
+                    <input type="text" className="AuthPhoneInput" style={{borderBottomColor:'#b3e5fc'}}  value={this.state.phone} onChange={(e)=>this.setState(validation(e.target.value,'phone','text'))} placeholder="Enter 10 digit mobile number"/>
                     <div onClick={()=>this.onSubmit()} className="AuthGoButtonDiv">
                         <ArrowForwardIcon style={{color:'#fff',cursor:'pointer'}}/>
                     </div>

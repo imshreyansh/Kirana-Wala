@@ -8,6 +8,7 @@ import Auth from './components/authorization/Auth'
 import AdminDashboard from './components/admin/AdminDashboard'
 import SideMenu from './components/common/SideMenu'
 import TopMenu from './components/common/TopMenu'
+import AddVendor from './components/admin/vendor/AddVendor'
 import './App.css'
 class App extends Component{
 
@@ -26,7 +27,7 @@ class App extends Component{
     return(
       <Router>
         <SnackBar/>
-        {!this.loggedInUser() && this.loggedInUser()==='' ? 
+        {!this.loggedInUser()  ? 
       <Fragment>
         <Switch>
         <Route exact path="/" component={Auth}/>
@@ -40,6 +41,7 @@ class App extends Component{
             <SideMenu/>
       <Switch>
       <Route exact path="/" component={AdminDashboard}/>
+      <Route path="/add-vendor" component={AddVendor}/>
         </Switch>
         </div>
         </div>

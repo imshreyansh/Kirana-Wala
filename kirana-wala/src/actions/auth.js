@@ -2,7 +2,7 @@ import {AUTHENTICATION} from './actionTypes'
 import axios from 'axios'
 import {URL} from '../config/helpers'
 import {handleError} from './handleError'
-import {setItem} from '../components/utils/localStorage'
+import {setItem,clearStorage} from '../components/utils/localStorage'
 
 export const authenticateUser = (data)=>dispatch=>{
     axios.post(`${URL}/api/credential/createAndLoginUser`,data)
@@ -16,4 +16,10 @@ export const authenticateUser = (data)=>dispatch=>{
         dispatch(handleError({type:'error',error:error.message}))
         dispatch({type:AUTHENTICATION,payload:null})
     })
+}
+
+
+export const logout = () =>dispatch=>{
+    clearStorage()
+    dispatch({type:AUTHENTICATION,payload:{}})
 }
