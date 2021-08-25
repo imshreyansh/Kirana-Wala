@@ -16,14 +16,24 @@ uploadAvatar(req,res,async(error)=>{
             name:getDesignationById.name
         }
         const cred = new Credential({name,mobile,designation:objDesignation})
-        cred['avatar']=req.files[0]
-        const vend = new Vendor({storeName,storeContact})
-        vend['storeLogo'] =req.files[1]
-        vend['documents']=req.files[3]
+        let documents = []
+        let storeLogo=''
+        req.files.map(d=>{
+            if(d.fieldname ==='documents'){
+                documents.push(d)
+            }else if(d.fieldname==='storeLogo'){
+                storeLogo = d
+            }
+        })
+        // cred['avatar']=req.files[0]
         await cred.save()
+        const vend = new Vendor({storeName,storeContact})
+        vend['storeLogo'] =storeLogo
+        vend['documents']=documents
+        vend["credential"] = cred._id
         await vend.save()
-        const populateVend = vend.populate('credential')
-        successResponseHandler(res,populateVend,'Added User Successfully')
+        const getVend = await Vendor.findOne({_id:vend._id}).populate('credential')
+        successResponseHandler(res,getVend,'Added User Successfully')
     }
     catch(error){
         errorResponseHandler(res,error,'Failed while adding user')

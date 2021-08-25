@@ -16,7 +16,7 @@ const vendor = new Schema({
     storeLogo:Object,
     status:{
         type:String,
-        enum:["Pending,Approved,Rejected"],
+        enum:["Pending","Approved","Rejected"],
         default:"Pending"
     },
     created_at: {
